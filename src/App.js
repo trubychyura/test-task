@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Container, Table } from 'react-bootstrap';
 import styled from 'styled-components';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Modal from './components/Modal';
 import Product from './components/Product';
 
 const StyledContainer = styled(Container)`
@@ -49,6 +51,7 @@ function App() {
           ))}
         </tbody>
       </StyledTable>
+      <Modal />
     </StyledContainer>
   );
 }
