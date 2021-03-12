@@ -1,70 +1,18 @@
-import {
-  Button,
-  Col,
-  Container,
-  Form,
-  Image,
-  ListGroup,
-  Modal as BootstrapModal,
-  Row,
-} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { hideModal } from '../redux/modal';
-import styled from 'styled-components';
+import { Button, Col, Container, ListGroup, Row } from 'react-bootstrap';
+import {
+  StyledModal,
+  StyledImage,
+  StyledDescription,
+  StyledComments,
+  StyledComentHeader,
+  StyledForm,
+} from '../styled/Modal';
 
-import RatingStars from './RatingStars';
+import { RatingStars } from './index';
 
-const StyledModal = styled(BootstrapModal)`
-  .modal-dialog {
-    max-width: 50%;
-  }
-`;
-
-const StyledImage = styled(Image)`
-  display: block;
-  max-height: 300px;
-  margin: auto;
-`;
-
-const StyledForm = styled(Form)`
-  width: 100%;
-`;
-
-const StyledDescription = styled(Col)`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-
-  h4 {
-    flex-grow: 0;
-  }
-
-  p {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-  }
-
-  span {
-    display: block;
-  }
-`;
-
-const StyledRating = styled(Col)`
-  margin-left: auto;
-  margin-bottom: -20px;
-`;
-
-const StyledComments = styled(Col)`
-  padding: 15px;
-`;
-
-const StyledComentHeader = styled(Row)`
-  margin: 0;
-  justify-content: space-between;
-`;
-
-const Modal = ({ isVisible, data, hideModal, showModal }) => {
+const Modal = ({ isVisible, data, hideModal }) => {
   if (!isVisible) {
     return null;
   }
@@ -79,17 +27,17 @@ const Modal = ({ isVisible, data, hideModal, showModal }) => {
           <StyledImage src={data.img} />
         </Col>
         <StyledDescription>
-          <h4>Description:</h4>
+          <h5>Description:</h5>
           <p>
             <span>{data.name}</span>
           </p>
         </StyledDescription>
         <StyledComments lg={12}>
-          <h4>Comments:</h4>
+          <h5>Comments:</h5>
           <ListGroup>
             <ListGroup.Item as={Container}>
               <StyledComentHeader>
-                <h5>Customer Name</h5>
+                <h6>Customer Name</h6>
                 <RatingStars />
               </StyledComentHeader>
               <p>
@@ -101,7 +49,7 @@ const Modal = ({ isVisible, data, hideModal, showModal }) => {
             </ListGroup.Item>
             <ListGroup.Item as={Container}>
               <StyledComentHeader>
-                <h5>Customer Name</h5>
+                <h6>Customer Name</h6>
                 <RatingStars />
               </StyledComentHeader>
               <p>
