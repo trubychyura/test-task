@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Container, Table } from 'react-bootstrap';
+import { Button, Container, Table } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { loadData } from './redux/products';
 
 import Modal from './components/Modal';
 import Product from './components/Product';
@@ -21,21 +22,11 @@ const StyledTable = styled(Table)`
   }
 `;
 
-function App() {
-  const [products, setProducts] = useState([]);
-
+function App({ loadData, products }) {
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('https://demo8413434.mockable.io/');
-      const data = await response.json();
-
-      setProducts(data.products);
-    };
-
-    fetchData();
-  }, []);
-
-  console.log(products);
+    loadData();
+    console.log('loading...');
+  }, [loadData]);
 
   return (
     <StyledContainer>
@@ -62,4 +53,8 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = ({ products }) => ({ products: products.products });
+
+export default connect(mapStateToProps, {
+  loadData,
+})(App);

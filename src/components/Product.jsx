@@ -3,7 +3,6 @@ import { showModal } from '../redux/modal';
 
 const Product = ({ showModal, data }) => {
   const handleClick = () => {
-    console.log(data, 'clicked');
     showModal(data);
   };
 
