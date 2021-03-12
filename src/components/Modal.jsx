@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Button,
   Col,
@@ -9,6 +8,8 @@ import {
   Modal as BootstrapModal,
   Row,
 } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { hideModal } from '../redux/modal';
 import styled from 'styled-components';
 
 import RatingStars from './RatingStars';
@@ -58,85 +59,77 @@ const StyledComentHeader = styled(Row)`
   justify-content: space-between;
 `;
 
-const Modal = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+const Modal = ({ isVisible, data, hideModal, showModal }) => {
+  if (!isVisible) {
+    return null;
+  }
 
   return (
-    <>
-      <Button variant='primary' onClick={handleShow}>
-        Launch demo modal
-      </Button>
-
-      <StyledModal show={show} onHide={handleClose}>
-        <StyledModal.Header closeButton>
-          <StyledModal.Title>Name</StyledModal.Title>
-        </StyledModal.Header>
-        <StyledModal.Body as={Row}>
-          <Col lg='auto'>
-            <StyledImage src='https://images-na.ssl-images-amazon.com/images/I/71Y4Ogr8BNL._SX679_.jpg' />
-          </Col>
-          <StyledDescription>
-            <h4>Description:</h4>
-            <p>
-              <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Laboriosam culpa libero repellendus autem corporis quas unde est
-                tenetur nemo eos eum, sit dicta labore iure facilis. Esse quo
-                labore illum!
-              </span>
-            </p>
-          </StyledDescription>
-          <StyledComments lg={12}>
-            <h4>Comments:</h4>
-            <ListGroup>
-              <ListGroup.Item as={Container}>
-                <StyledComentHeader>
-                  <h5>Customer Name</h5>
-                  <RatingStars />
-                </StyledComentHeader>
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga
-                  corporis aliquam, inventore sit maiores asperiores provident
-                  natus debitis quis commodi officiis impedit ipsam expedita
-                  porro autem veritatis, sapiente, facilis molestiae!
-                </p>
-              </ListGroup.Item>
-              <ListGroup.Item as={Container}>
-                <StyledComentHeader>
-                  <h5>Customer Name</h5>
-                  <RatingStars />
-                </StyledComentHeader>
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga
-                  corporis aliquam, inventore sit maiores asperiores provident
-                  natus debitis quis commodi officiis impedit ipsam expedita
-                  porro autem veritatis, sapiente, facilis molestiae!
-                </p>
-              </ListGroup.Item>
-            </ListGroup>
-          </StyledComments>
-        </StyledModal.Body>
-
-        <StyledModal.Footer>
-          <StyledForm>
-            <StyledForm.Group controlId='StyledForm'>
+    <StyledModal show={isVisible} onHide={hideModal}>
+      <StyledModal.Header closeButton>
+        <StyledModal.Title>{data.name}</StyledModal.Title>
+      </StyledModal.Header>
+      <StyledModal.Body as={Row}>
+        <Col lg='auto'>
+          <StyledImage src={data.img} />
+        </Col>
+        <StyledDescription>
+          <h4>Description:</h4>
+          <p>
+            <span>{data.name}</span>
+          </p>
+        </StyledDescription>
+        <StyledComments lg={12}>
+          <h4>Comments:</h4>
+          <ListGroup>
+            <ListGroup.Item as={Container}>
               <StyledComentHeader>
-                <StyledForm.Label>Your Comment</StyledForm.Label>
+                <h5>Customer Name</h5>
                 <RatingStars />
               </StyledComentHeader>
-              <StyledForm.Control as='textarea' placeholder='Enter comment' />
-            </StyledForm.Group>
-            <Button variant='primary' type='submit'>
-              Send
-            </Button>
-          </StyledForm>
-        </StyledModal.Footer>
-      </StyledModal>
-    </>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga
+                corporis aliquam, inventore sit maiores asperiores provident
+                natus debitis quis commodi officiis impedit ipsam expedita porro
+                autem veritatis, sapiente, facilis molestiae!
+              </p>
+            </ListGroup.Item>
+            <ListGroup.Item as={Container}>
+              <StyledComentHeader>
+                <h5>Customer Name</h5>
+                <RatingStars />
+              </StyledComentHeader>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga
+                corporis aliquam, inventore sit maiores asperiores provident
+                natus debitis quis commodi officiis impedit ipsam expedita porro
+                autem veritatis, sapiente, facilis molestiae!
+              </p>
+            </ListGroup.Item>
+          </ListGroup>
+        </StyledComments>
+      </StyledModal.Body>
+      <StyledModal.Footer>
+        <StyledForm>
+          <StyledForm.Group controlId='StyledForm'>
+            <StyledComentHeader>
+              <StyledForm.Label>Your Comment</StyledForm.Label>
+              <RatingStars />
+            </StyledComentHeader>
+            <StyledForm.Control as='textarea' placeholder='Enter comment' />
+          </StyledForm.Group>
+          <Button variant='primary' type='submit'>
+            Send
+          </Button>
+        </StyledForm>
+      </StyledModal.Footer>
+    </StyledModal>
   );
 };
 
-export default connect(Modal);
+const mapStateToProps = ({ modal }) => ({
+  isVisible: modal.isVisible,
+  data: modal.data,
+});
+
+export default connect(mapStateToProps, { hideModal })(Modal);

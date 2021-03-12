@@ -47,9 +47,15 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
-            <Product name={product.name} key={product.asin} />
-          ))}
+          {products.map(({ name, asin, img, comments = [] }) => {
+            const data = {
+              name,
+              asin,
+              img,
+              comments,
+            };
+            return <Product data={data} key={asin} />;
+          })}
         </tbody>
       </StyledTable>
     </StyledContainer>
