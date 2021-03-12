@@ -139,4 +139,4 @@ const Modal = () => {
   );
 };
 
-export default Modal;
+export default connect(Modal);
