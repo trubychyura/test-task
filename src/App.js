@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Button, Container, Table } from 'react-bootstrap';
+import { useEffect } from 'react';
+import { Container, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { loadData } from './redux/products';

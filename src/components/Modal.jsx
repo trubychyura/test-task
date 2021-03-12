@@ -50,6 +50,11 @@ const StyledDescription = styled(Col)`
   }
 `;
 
+const StyledRating = styled(Col)`
+  margin-left: auto;
+  margin-bottom: -20px;
+`;
+
 const StyledComments = styled(Col)`
   padding: 15px;
 `;
@@ -111,11 +116,10 @@ const Modal = ({ isVisible, data, hideModal, showModal }) => {
       </StyledModal.Body>
       <StyledModal.Footer>
         <StyledForm>
-          <StyledForm.Group controlId='StyledForm'>
-            <StyledComentHeader>
-              <StyledForm.Label>Your Comment</StyledForm.Label>
-              <RatingStars />
-            </StyledComentHeader>
+          <h5>Rate the product</h5>
+          <RatingStars />
+          <StyledForm.Group controlId='Form'>
+            <StyledForm.Label>Your Comment</StyledForm.Label>
             <StyledForm.Control as='textarea' placeholder='Enter comment' />
           </StyledForm.Group>
           <Button variant='primary' type='submit'>
