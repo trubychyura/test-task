@@ -39,6 +39,7 @@ function App() {
 
   return (
     <StyledContainer>
+      <Modal />
       <StyledTable bordered striped hover>
         <thead>
           <tr>
@@ -51,7 +52,6 @@ function App() {
           ))}
         </tbody>
       </StyledTable>
-      <Modal />
     </StyledContainer>
   );
 }
