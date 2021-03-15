@@ -38,7 +38,7 @@ const Modal = ({ isVisible, data, hideModal }) => {
             <ListGroup.Item as={Container}>
               <StyledComentHeader>
                 <h6>Customer Name</h6>
-                <RatingStars />
+                <RatingStars stars={3} />
               </StyledComentHeader>
               <p>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga
@@ -50,7 +50,7 @@ const Modal = ({ isVisible, data, hideModal }) => {
             <ListGroup.Item as={Container}>
               <StyledComentHeader>
                 <h6>Customer Name</h6>
-                <RatingStars />
+                <RatingStars stars={2} />
               </StyledComentHeader>
               <p>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga
@@ -64,10 +64,12 @@ const Modal = ({ isVisible, data, hideModal }) => {
       </StyledModal.Body>
       <StyledModal.Footer>
         <StyledForm>
-          <h5>Rate the product</h5>
-          <RatingStars />
-          <StyledForm.Group controlId='Form'>
-            <StyledForm.Label>Your Comment</StyledForm.Label>
+          <label>
+            Products's rate:
+            <RatingStars />
+          </label>
+          <StyledForm.Group controlId='message'>
+            <StyledForm.Label>Your comment:</StyledForm.Label>
             <StyledForm.Control as='textarea' placeholder='Enter comment' />
           </StyledForm.Group>
           <Button variant='primary' type='submit'>

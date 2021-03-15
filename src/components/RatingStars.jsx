@@ -6,9 +6,23 @@ import {
   StyledStar,
 } from '../styled/RatingStars';
 
-const RatingStars = () => {
+const RatingStars = ({ stars }) => {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
+  if (stars !== undefined) {
+    return (
+      <StyledContainer>
+        {[...Array(5)].map((_, i) => (
+          <StyledStar
+            value={i + 1}
+            rating={Math.round(stars)}
+            hover={null}
+            key={i}
+          />
+        ))}
+      </StyledContainer>
+    );
+  }
 
   return (
     <StyledContainer>
@@ -25,7 +39,6 @@ const RatingStars = () => {
               onClick={() => setRating(ratingValue)}
             />
             <StyledStar
-              size='25'
               value={ratingValue}
               rating={rating}
               hover={hover}

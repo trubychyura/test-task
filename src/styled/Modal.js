@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { Col, Form, Image, Modal, Row } from 'react-bootstrap';
 
 export const StyledModal = styled(Modal)`
+  @media (max-width: 560px) {
+    padding: 0   !important;
+  }
+
   .modal-title {
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -10,12 +14,20 @@ export const StyledModal = styled(Modal)`
 
   .modal-dialog {
     max-width: 50%;
+    @media (max-width: 1000px) {
+      max-width: 70%;
+    }
+    @media (max-width: 580px) {
+      max-width: 90%;
+      margin: auto;
+    }
   }
 `;
 
 export const StyledImage = styled(Image)`
   display: block;
   max-height: 300px;
+  max-width: 100%;
   margin: auto;
 `;
 

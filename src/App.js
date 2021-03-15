@@ -38,13 +38,15 @@ function App({ loadData, products }) {
           </tr>
         </thead>
         <tbody>
-          {products.map(({ name, asin, img, comments = [] }) => {
+          {products.map(({ name, asin, img, comments = [], stars = 0 }) => {
             const data = {
               name,
               asin,
               img,
               comments,
+              stars,
             };
+            console.log(stars);
             return <Product data={data} key={asin} />;
           })}
         </tbody>
