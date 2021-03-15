@@ -11,7 +11,6 @@ export function* workerLoadData() {
   const data = yield call(fetchData);
 
   yield put(setData(data));
-  console.log('Loading data');
 }
 
 export function* watchLoadData() {

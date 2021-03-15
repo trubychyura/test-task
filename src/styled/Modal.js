@@ -3,7 +3,7 @@ import { Col, Form, Image, Modal, Row } from 'react-bootstrap';
 
 export const StyledModal = styled(Modal)`
   @media (max-width: 560px) {
-    padding: 0   !important;
+    padding: 0 !important;
   }
 
   .modal-title {
@@ -13,7 +13,7 @@ export const StyledModal = styled(Modal)`
   }
 
   .modal-dialog {
-    max-width: 50%;
+    max-width: 60%;
     @media (max-width: 1000px) {
       max-width: 70%;
     }

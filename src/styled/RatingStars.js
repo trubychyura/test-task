@@ -21,6 +21,6 @@ export const StyledRadio = styled(Form.Check)`
   display: none;
 `;
 
-export const StyledContainer = styled(Form.Group)`
+export const StyledContainer = styled('div')`
   display: flex;
 `;

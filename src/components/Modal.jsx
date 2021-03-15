@@ -11,6 +11,7 @@ import {
 } from '../styled/Modal';
 
 import { RatingStars } from './index';
+import { Formik } from 'formik';
 
 const Modal = ({ isVisible, data, hideModal }) => {
   if (!isVisible) {
@@ -63,19 +64,36 @@ const Modal = ({ isVisible, data, hideModal }) => {
         </StyledComments>
       </StyledModal.Body>
       <StyledModal.Footer>
-        <StyledForm>
-          <label>
-            Products's rate:
-            <RatingStars />
-          </label>
-          <StyledForm.Group controlId='message'>
-            <StyledForm.Label>Your comment:</StyledForm.Label>
-            <StyledForm.Control as='textarea' placeholder='Enter comment' />
-          </StyledForm.Group>
-          <Button variant='primary' type='submit'>
-            Send
-          </Button>
-        </StyledForm>
+        <Formik
+          initialValues={{
+            comment: '',
+            rating: 0,
+          }}
+        >
+          {(formik) => {
+            return (
+              <StyledForm>
+                <StyledForm.Group>
+                  <StyledForm.Label>Products's rate:</StyledForm.Label>
+                  <RatingStars name='rating' />
+                </StyledForm.Group>
+                <StyledForm.Group controlId='formComment'>
+                  <StyledForm.Label>Your comment:</StyledForm.Label>
+                  <StyledForm.Control
+                    as='textarea'
+                    value={formik.values.comment}
+                    placeholder='Enter comment'
+                    name='comment'
+                    onChange={formik.handleChange}
+                  />
+                </StyledForm.Group>
+                <Button variant='primary' type='submit'>
+                  Send
+                </Button>
+              </StyledForm>
+            );
+          }}
+        </Formik>
       </StyledModal.Footer>
     </StyledModal>
   );
