@@ -2,15 +2,19 @@ import { Formik } from 'formik';
 import { RatingStars } from '.';
 import { StyledForm, StyledButton, StyledAlert } from '../styled/StyledForm';
 import * as yup from 'yup';
+import { connect } from 'react-redux';
+import { handleSubmit } from '../redux/products';
 
-const Form = () => (
+const Form = ({ id, handleSubmit }) => (
   <Formik
     initialValues={{
       comment: '',
       rating: 0,
     }}
-    onSubmit={(props) => {
-      console.log(props);
+    onSubmit={(data, { resetForm }) => {
+      console.log(data, id);
+      handleSubmit(id, data);
+      resetForm();
     }}
     validationSchema={yup.object({
       comment: yup.string('Must be a string').required('Comment is required!'),
@@ -52,4 +56,6 @@ const Form = () => (
   </Formik>
 );
 
-export default Form;
+export default connect(({ modal }) => ({ id: modal.id }), { handleSubmit })(
+  Form,
+);

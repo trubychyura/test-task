@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { Field, useField, useFormikContext } from 'formik';
+import { Field } from 'formik';
 
 import {
   StyledContainer,

@@ -10,7 +10,7 @@ function App({ loadData, products }) {
   useEffect(() => {
     loadData();
   }, [loadData]);
-
+  console.log(products);
   return (
     <StyledContainer>
       <Modal />
@@ -37,7 +37,7 @@ function App({ loadData, products }) {
   );
 }
 
-const mapStateToProps = ({ products }) => ({ products: products.products });
+const mapStateToProps = ({ products }) => ({ products });
 
 export default connect(mapStateToProps, {
   loadData,
