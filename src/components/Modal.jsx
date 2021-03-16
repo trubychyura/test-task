@@ -10,16 +10,23 @@ import {
 } from '../styled/Modal';
 
 import { RatingStars, Form } from '.';
+import { useHistory, useParams } from 'react-router';
 
-const Modal = ({ isVisible, id, products, hideModal }) => {
-  if (!isVisible) {
+const Modal = ({ products }) => {
+  const params = useParams();
+  const history = useHistory();
+  const product = products.find((product) => product.asin === params.id);
+
+  if (!product) {
     return null;
   }
 
-  const product = products.find((product) => product.asin === id);
+  const hideModal = () => {
+    history.push('/');
+  };
 
   return (
-    <StyledModal show={isVisible} onHide={hideModal}>
+    <StyledModal show={Boolean(params.id)} onHide={hideModal}>
       <StyledModal.Header closeButton>
         <StyledModal.Title>{product.name}</StyledModal.Title>
       </StyledModal.Header>
@@ -55,11 +62,4 @@ const Modal = ({ isVisible, id, products, hideModal }) => {
   );
 };
 
-export default connect(
-  ({ modal, products }) => ({
-    isVisible: modal.isVisible,
-    id: modal.id,
-    products,
-  }),
-  { hideModal },
-)(Modal);
+export default connect(({ products }) => ({ products }))(Modal);

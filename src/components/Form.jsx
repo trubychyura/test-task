@@ -12,7 +12,6 @@ const Form = ({ id, handleSubmit }) => (
       rating: 0,
     }}
     onSubmit={(data, { resetForm }) => {
-      console.log(data, id);
       handleSubmit(id, { text: data.comment, rating: data.rating });
       resetForm();
     }}
