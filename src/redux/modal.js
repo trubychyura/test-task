@@ -1,5 +1,6 @@
 const SHOW_MODAL = 'SHOW_MODAL';
 const HIDE_MODAL = 'HIDE_MODAL';
+const SUBMIT_FORM = 'SUBMIT_FORM';
 
 const initialState = {
   isVisible: false,
@@ -12,6 +13,8 @@ const modalReducer = (state = initialState, { type, payload }) => {
       return { ...state, data: payload.data, isVisible: true };
     case HIDE_MODAL:
       return { ...state, data: null, isVisible: false };
+    case SUBMIT_FORM:
+      return { ...state };
     default:
       return state;
   }
@@ -19,6 +22,13 @@ const modalReducer = (state = initialState, { type, payload }) => {
 
 export const showModal = (data) => ({
   type: SHOW_MODAL,
+  payload: {
+    data,
+  },
+});
+
+export const submitForm = (data) => ({
+  type: SUBMIT_FORM,
   payload: {
     data,
   },

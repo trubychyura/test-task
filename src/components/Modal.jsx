@@ -1,17 +1,15 @@
 import { connect } from 'react-redux';
 import { hideModal } from '../redux/modal';
-import { Button, Col, Container, ListGroup, Row } from 'react-bootstrap';
+import { Col, Container, ListGroup, Row } from 'react-bootstrap';
 import {
   StyledModal,
   StyledImage,
   StyledDescription,
   StyledComments,
   StyledComentHeader,
-  StyledForm,
 } from '../styled/Modal';
 
-import { RatingStars } from './index';
-import { Formik } from 'formik';
+import { RatingStars, Form } from '.';
 
 const Modal = ({ isVisible, data, hideModal }) => {
   if (!isVisible) {
@@ -64,44 +62,16 @@ const Modal = ({ isVisible, data, hideModal }) => {
         </StyledComments>
       </StyledModal.Body>
       <StyledModal.Footer>
-        <Formik
-          initialValues={{
-            comment: '',
-            rating: 0,
-          }}
-        >
-          {(formik) => {
-            return (
-              <StyledForm>
-                <StyledForm.Group>
-                  <StyledForm.Label>Products's rate:</StyledForm.Label>
-                  <RatingStars name='rating' />
-                </StyledForm.Group>
-                <StyledForm.Group controlId='formComment'>
-                  <StyledForm.Label>Your comment:</StyledForm.Label>
-                  <StyledForm.Control
-                    as='textarea'
-                    value={formik.values.comment}
-                    placeholder='Enter comment'
-                    name='comment'
-                    onChange={formik.handleChange}
-                  />
-                </StyledForm.Group>
-                <Button variant='primary' type='submit'>
-                  Send
-                </Button>
-              </StyledForm>
-            );
-          }}
-        </Formik>
+        <Form />
       </StyledModal.Footer>
     </StyledModal>
   );
 };
 
-const mapStateToProps = ({ modal }) => ({
-  isVisible: modal.isVisible,
-  data: modal.data,
-});
-
-export default connect(mapStateToProps, { hideModal })(Modal);
+export default connect(
+  ({ modal }) => ({
+    isVisible: modal.isVisible,
+    data: modal.data,
+  }),
+  { hideModal },
+)(Modal);

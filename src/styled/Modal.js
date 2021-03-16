@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Col, Form, Image, Modal, Row } from 'react-bootstrap';
+import { Col, Image, Modal, Row } from 'react-bootstrap';
 
 export const StyledModal = styled(Modal)`
   @media (max-width: 560px) {
@@ -31,9 +31,6 @@ export const StyledImage = styled(Image)`
   margin: auto;
 `;
 
-export const StyledForm = styled(Form)`
-  width: 100%;
-`;
 
 export const StyledDescription = styled(Col)`
   display: flex;
