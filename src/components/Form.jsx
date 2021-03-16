@@ -28,7 +28,6 @@ const Form = ({ id, handleSubmit }) => (
         <StyledForm.Group>
           <StyledForm.Label>Products's rate:</StyledForm.Label>
           <RatingStars name='rating' />
-
           {formik.errors.rating && formik.touched.rating && (
             <StyledAlert variant='danger'>{formik.errors.rating}</StyledAlert>
           )}
@@ -42,7 +41,6 @@ const Form = ({ id, handleSubmit }) => (
             name='comment'
             onChange={formik.handleChange}
           />
-
           {formik.errors.comment && formik.touched.comment && (
             <StyledAlert variant='danger'>{formik.errors.comment}</StyledAlert>
           )}
@@ -55,6 +53,4 @@ const Form = ({ id, handleSubmit }) => (
   </Formik>
 );
 
-export default connect(({ modal }) => ({ id: modal.id }), { handleSubmit })(
-  Form,
-);
+export default connect(null, { handleSubmit })(Form);

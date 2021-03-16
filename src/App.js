@@ -23,13 +23,9 @@ function App({ loadData, products }) {
               </tr>
             </thead>
             <tbody>
-              {products.map(({ name, asin }) => {
-                const data = {
-                  asin,
-                  name,
-                };
-                return <Product data={data} key={asin} />;
-              })}
+              {products.map(({ name, asin }) => (
+                <Product id={asin} name={name} key={asin} />
+              ))}
             </tbody>
           </StyledTable>
         </Route>

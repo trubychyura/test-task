@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { hideModal } from '../redux/modal';
+import { useHistory, useParams } from 'react-router';
 import { Col, Container, ListGroup, Row } from 'react-bootstrap';
 import {
   StyledModal,
@@ -7,10 +7,8 @@ import {
   StyledDescription,
   StyledComments,
   StyledComentHeader,
-} from '../styled/Modal';
-
+} from '../styled/StyledModal';
 import { RatingStars, Form } from '.';
-import { useHistory, useParams } from 'react-router';
 
 const Modal = ({ products }) => {
   const params = useParams();
@@ -56,7 +54,7 @@ const Modal = ({ products }) => {
         </StyledComments>
       </StyledModal.Body>
       <StyledModal.Footer>
-        <Form />
+        <Form id={params.id} />
       </StyledModal.Footer>
     </StyledModal>
   );

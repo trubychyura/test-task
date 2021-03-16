@@ -6,7 +6,7 @@ import {
   StyledContainer,
   StyledRadio,
   StyledStar,
-} from '../styled/RatingStars';
+} from '../styled/StyledRating';
 
 const RatingStars = ({ stars, name }) => {
   const [hover, setHover] = useState(null);
