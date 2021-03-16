@@ -3,7 +3,6 @@ const HIDE_MODAL = 'HIDE_MODAL';
 
 const initialState = {
   isVisible: false,
-  data: null,
   id: null,
 };
 
@@ -12,12 +11,11 @@ const modalReducer = (state = initialState, { type, payload }) => {
     case SHOW_MODAL:
       return {
         ...state,
-        data: payload.data,
         isVisible: true,
         id: payload.data.asin,
       };
     case HIDE_MODAL:
-      return { ...state, data: null, isVisible: false, id: null };
+      return { ...state, isVisible: false, id: null };
     default:
       return state;
   }

@@ -10,7 +10,9 @@ function App({ loadData, products }) {
   useEffect(() => {
     loadData();
   }, [loadData]);
+
   console.log(products);
+
   return (
     <StyledContainer>
       <Modal />
@@ -21,13 +23,10 @@ function App({ loadData, products }) {
           </tr>
         </thead>
         <tbody>
-          {products.map(({ name, asin, img, comments = [], stars = 0 }) => {
+          {products.map(({ name, asin }) => {
             const data = {
-              name,
               asin,
-              img,
-              comments,
-              stars,
+              name,
             };
             return <Product data={data} key={asin} />;
           })}

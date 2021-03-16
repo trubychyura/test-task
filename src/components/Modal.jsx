@@ -11,53 +11,40 @@ import {
 
 import { RatingStars, Form } from '.';
 
-const Modal = ({ isVisible, data, hideModal }) => {
+const Modal = ({ isVisible, id, products, hideModal }) => {
   if (!isVisible) {
     return null;
   }
 
+  const product = products.find((product) => product.asin === id);
+
   return (
     <StyledModal show={isVisible} onHide={hideModal}>
       <StyledModal.Header closeButton>
-        <StyledModal.Title>{data.name}</StyledModal.Title>
+        <StyledModal.Title>{product.name}</StyledModal.Title>
       </StyledModal.Header>
       <StyledModal.Body as={Row}>
         <Col lg='auto'>
-          <StyledImage src={data.img} />
+          <StyledImage src={product.img} />
         </Col>
         <StyledDescription>
           <h5>Description:</h5>
           <p>
-            <span>{data.name}</span>
+            <span>{product.name}</span>
           </p>
         </StyledDescription>
         <StyledComments lg={12}>
           <h5>Comments:</h5>
           <ListGroup>
-            <ListGroup.Item as={Container}>
-              <StyledComentHeader>
-                <h6>Customer Name</h6>
-                <RatingStars stars={3} />
-              </StyledComentHeader>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga
-                corporis aliquam, inventore sit maiores asperiores provident
-                natus debitis quis commodi officiis impedit ipsam expedita porro
-                autem veritatis, sapiente, facilis molestiae!
-              </p>
-            </ListGroup.Item>
-            <ListGroup.Item as={Container}>
-              <StyledComentHeader>
-                <h6>Customer Name</h6>
-                <RatingStars stars={2} />
-              </StyledComentHeader>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga
-                corporis aliquam, inventore sit maiores asperiores provident
-                natus debitis quis commodi officiis impedit ipsam expedita porro
-                autem veritatis, sapiente, facilis molestiae!
-              </p>
-            </ListGroup.Item>
+            {product.comments.map((comment, i) => (
+              <ListGroup.Item as={Container} key={i}>
+                <StyledComentHeader>
+                  <h6>{comment.user || 'Unknown user'}</h6>
+                  <RatingStars stars={comment.rating} />
+                </StyledComentHeader>
+                <p>{comment.text}</p>
+              </ListGroup.Item>
+            ))}
           </ListGroup>
         </StyledComments>
       </StyledModal.Body>
@@ -69,9 +56,10 @@ const Modal = ({ isVisible, data, hideModal }) => {
 };
 
 export default connect(
-  ({ modal }) => ({
+  ({ modal, products }) => ({
     isVisible: modal.isVisible,
-    data: modal.data,
+    id: modal.id,
+    products,
   }),
   { hideModal },
 )(Modal);

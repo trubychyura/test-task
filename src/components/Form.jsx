@@ -13,7 +13,7 @@ const Form = ({ id, handleSubmit }) => (
     }}
     onSubmit={(data, { resetForm }) => {
       console.log(data, id);
-      handleSubmit(id, data);
+      handleSubmit(id, { text: data.comment, rating: data.rating });
       resetForm();
     }}
     validationSchema={yup.object({
