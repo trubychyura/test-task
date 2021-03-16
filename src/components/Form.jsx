@@ -1,29 +1,24 @@
 import { Formik } from 'formik';
 import { RatingStars } from '.';
 import { StyledForm, StyledButton, StyledAlert } from '../styled/StyledForm';
+import * as yup from 'yup';
 
 const Form = () => (
   <Formik
     initialValues={{
       comment: '',
-      rating: null,
+      rating: 0,
     }}
     onSubmit={(props) => {
       console.log(props);
     }}
-    validate={({ comment, rating }) => {
-      const errors = {};
-
-      if (!comment) {
-        errors.comment = 'Comment is required! ';
-      }
-
-      if (!rating) {
-        errors.rating = "Product's rate is required!";
-      }
-
-      return errors;
-    }}
+    validationSchema={yup.object({
+      comment: yup.string('Must be a string').required('Comment is required!'),
+      rating: yup
+        .number()
+        .moreThan(0, "Product's rate is required!")
+        .required("Product's rate is required!"),
+    })}
   >
     {(formik) => (
       <StyledForm onSubmit={formik.handleSubmit}>
@@ -31,7 +26,7 @@ const Form = () => (
           <StyledForm.Label>Products's rate:</StyledForm.Label>
           <RatingStars name='rating' />
 
-          {formik.errors.rating && (
+          {formik.errors.rating && formik.touched.rating && (
             <StyledAlert variant='danger'>{formik.errors.rating}</StyledAlert>
           )}
         </StyledForm.Group>
@@ -45,7 +40,7 @@ const Form = () => (
             onChange={formik.handleChange}
           />
 
-          {formik.errors.comment && (
+          {formik.errors.comment && formik.touched.comment && (
             <StyledAlert variant='danger'>{formik.errors.comment}</StyledAlert>
           )}
         </StyledForm.Group>

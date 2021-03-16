@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { Field } from 'formik';
+import { Field, useField, useFormikContext } from 'formik';
 
 import {
   StyledContainer,
@@ -8,10 +8,9 @@ import {
   StyledStar,
 } from '../styled/RatingStars';
 
-const RatingStars = (props) => {
-  const { stars, name } = props;
-
+const RatingStars = ({ stars, name }) => {
   const [hover, setHover] = useState(null);
+
   if (stars !== undefined) {
     return (
       <StyledContainer>
