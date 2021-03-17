@@ -5,7 +5,7 @@ import reducer from './reducer';
 
 const composeEnhancers =
   (typeof window !== 'undefined' &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+    (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
   compose;
 
 const sagaMiddleware = createSagaMiddleware();

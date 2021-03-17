@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { useHistory, useParams } from 'react-router';
 import { Col, Container, ListGroup, Row } from 'react-bootstrap';
+import { useHistory, useParams } from 'react-router';
 import {
   StyledModal,
   StyledImage,

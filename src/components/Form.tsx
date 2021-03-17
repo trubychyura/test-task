@@ -5,7 +5,12 @@ import * as yup from 'yup';
 import { connect } from 'react-redux';
 import { handleSubmit } from '../redux/products';
 
-const Form = ({ id, handleSubmit }) => (
+type FormProps = {
+  id: string;
+  handleSubmit: (id: string, data: any) => void;
+};
+
+const Form = ({ id, handleSubmit }: FormProps) => (
   <Formik
     initialValues={{
       comment: '',
@@ -16,7 +21,7 @@ const Form = ({ id, handleSubmit }) => (
       resetForm();
     }}
     validationSchema={yup.object({
-      comment: yup.string('Must be a string').required('Comment is required!'),
+      comment: yup.string().required('Comment is required!'),
       rating: yup
         .number()
         .moreThan(0, "Product's rate is required!")
@@ -27,7 +32,7 @@ const Form = ({ id, handleSubmit }) => (
       <StyledForm onSubmit={formik.handleSubmit}>
         <StyledForm.Group>
           <StyledForm.Label>Products's rate:</StyledForm.Label>
-          <RatingStars name='rating' />
+          {/* <RatingStars name='rating' /> */}
           {formik.errors.rating && formik.touched.rating && (
             <StyledAlert variant='danger'>{formik.errors.rating}</StyledAlert>
           )}
