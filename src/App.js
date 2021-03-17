@@ -1,59 +1,44 @@
-import { useEffect, useState } from 'react';
-import { Container, Table } from 'react-bootstrap';
-import styled from 'styled-components';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { loadData } from './redux/products';
+import { StyledContainer, StyledTable } from './styled/StyledApp';
+import { HashRouter as Router, Route } from 'react-router-dom';
 
 import Modal from './components/Modal';
 import Product from './components/Product';
 
-const StyledContainer = styled(Container)`
-  padding: 20px 10px;
-`;
-
-const StyledTable = styled(Table)`
-  text-align: center;
-  th {
-    font-size: 40px;
-  }
-
-  tbody tr {
-    cursor: pointer;
-  }
-`;
-
-function App() {
-  const [products, setProducts] = useState([]);
-
+function App({ loadData, products }) {
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('https://demo8413434.mockable.io/');
-      const data = await response.json();
-
-      setProducts(data.products);
-    };
-
-    fetchData();
-  }, []);
-
-  console.log(products);
+    loadData();
+  }, [loadData]);
 
   return (
     <StyledContainer>
-      <Modal />
-      <StyledTable bordered striped hover>
-        <thead>
-          <tr>
-            <th>List of products</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product) => (
-            <Product name={product.name} key={product.asin} />
-          ))}
-        </tbody>
-      </StyledTable>
+      <Router>
+        <Route path='/'>
+          <StyledTable bordered striped hover>
+            <thead>
+              <tr>
+                <th>List of products</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map(({ name, asin }) => (
+                <Product id={asin} name={name} key={asin} />
+              ))}
+            </tbody>
+          </StyledTable>
+        </Route>
+        <Route path='/:id'>
+          <Modal />
+        </Route>
+      </Router>
     </StyledContainer>
   );
 }
 
-export default App;
+const mapStateToProps = ({ products }) => ({ products });
+
+export default connect(mapStateToProps, {
+  loadData,
+})(App);
