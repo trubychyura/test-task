@@ -1,6 +1,9 @@
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-const Product = ({ id, name }) => (
+import { ProductProps } from '../types';
+
+const Product: FC<ProductProps> = ({ id, name }) => (
   <tr>
     <td>
       <Link to={`/${id}`}>{name}</Link>

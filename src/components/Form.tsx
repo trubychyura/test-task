@@ -1,23 +1,22 @@
-import { Formik } from 'formik';
-import { RatingStars } from '.';
-import { StyledForm, StyledButton, StyledAlert } from '../styled/StyledForm';
-import * as yup from 'yup';
+import { FC } from 'react';
 import { connect } from 'react-redux';
+import { Formik, FormikProps } from 'formik';
+import * as yup from 'yup';
 import { handleSubmit } from '../redux/products';
+import { FormProps, FormikValues } from '../types';
+import { StyledForm, StyledButton, StyledAlert } from '../styled/StyledForm';
+import { RatingStars } from '.';
 
-type FormProps = {
-  id: string;
-  handleSubmit: (id: string, data: any) => void;
+const initialValues: FormikValues = {
+  comment: '',
+  rating: 0,
 };
 
-const Form = ({ id, handleSubmit }: FormProps) => (
+const Form: FC<FormProps> = ({ id, handleSubmit }) => (
   <Formik
-    initialValues={{
-      comment: '',
-      rating: 0,
-    }}
-    onSubmit={(data, { resetForm }) => {
-      handleSubmit(id, { text: data.comment, rating: data.rating });
+    initialValues={initialValues}
+    onSubmit={(values, { resetForm }) => {
+      handleSubmit(id, { text: values.comment, rating: values.rating });
       resetForm();
     }}
     validationSchema={yup.object({
@@ -28,11 +27,11 @@ const Form = ({ id, handleSubmit }: FormProps) => (
         .required("Product's rate is required!"),
     })}
   >
-    {(formik) => (
+    {(formik: FormikProps<FormikValues>) => (
       <StyledForm onSubmit={formik.handleSubmit}>
         <StyledForm.Group>
           <StyledForm.Label>Products's rate:</StyledForm.Label>
-          {/* <RatingStars name='rating' /> */}
+          <RatingStars name='rating' />
           {formik.errors.rating && formik.touched.rating && (
             <StyledAlert variant='danger'>{formik.errors.rating}</StyledAlert>
           )}

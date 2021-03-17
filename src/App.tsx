@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, FC } from 'react';
 import { connect } from 'react-redux';
 import { loadData } from './redux/products';
 import { StyledContainer, StyledTable } from './styled/StyledApp';
@@ -6,8 +6,14 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 
 import Modal from './components/Modal';
 import Product from './components/Product';
+import { IProduct, IState } from './types';
 
-function App({ loadData, products }) {
+type AppProps = {
+  products: IProduct[];
+  loadData: () => void;
+};
+
+const App: FC<AppProps> = ({ loadData, products }) => {
   useEffect(() => {
     loadData();
   }, [loadData]);
@@ -35,10 +41,8 @@ function App({ loadData, products }) {
       </Router>
     </StyledContainer>
   );
-}
+};
 
-const mapStateToProps = ({ products }) => ({ products });
-
-export default connect(mapStateToProps, {
+export default connect(({ products }: IState) => ({ products }), {
   loadData,
 })(App);

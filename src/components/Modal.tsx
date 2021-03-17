@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { connect } from 'react-redux';
 import { Col, Container, ListGroup, Row } from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router';
@@ -8,12 +9,15 @@ import {
   StyledComments,
   StyledComentHeader,
 } from '../styled/StyledModal';
+import { IState, ModalProps, ParamTypes, IProduct } from '../types';
 import { RatingStars, Form } from '.';
 
-const Modal = ({ products }) => {
-  const params = useParams();
+const Modal: FC<ModalProps> = ({ products }) => {
+  const { id } = useParams<ParamTypes>();
   const history = useHistory();
-  const product = products.find((product) => product.asin === params.id);
+  const product: IProduct | undefined = products.find(
+    (product) => product.asin === id,
+  );
 
   if (!product) {
     return null;
@@ -24,7 +28,7 @@ const Modal = ({ products }) => {
   };
 
   return (
-    <StyledModal show={Boolean(params.id)} onHide={hideModal}>
+    <StyledModal show={Boolean(id)} onHide={hideModal}>
       <StyledModal.Header closeButton>
         <StyledModal.Title>{product.name}</StyledModal.Title>
       </StyledModal.Header>
@@ -44,7 +48,7 @@ const Modal = ({ products }) => {
             {product.comments.map((comment, i) => (
               <ListGroup.Item as={Container} key={i}>
                 <StyledComentHeader>
-                  <h6>{comment.user || 'Unknown user'}</h6>
+                  <h6>Unknown user</h6>
                   <RatingStars stars={comment.rating} />
                 </StyledComentHeader>
                 <p>{comment.text}</p>
@@ -54,10 +58,10 @@ const Modal = ({ products }) => {
         </StyledComments>
       </StyledModal.Body>
       <StyledModal.Footer>
-        <Form id={params.id} />
+        <Form id={id} />
       </StyledModal.Footer>
     </StyledModal>
   );
 };
 
-export default connect(({ products }) => ({ products }))(Modal);
+export default connect(({ products }: IState) => ({ products }))(Modal);
