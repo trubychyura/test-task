@@ -11,7 +11,7 @@ import {
 const RatingStars = ({ stars, name }) => {
   const [hover, setHover] = useState(null);
 
-  if (stars !== undefined) {
+  if (stars) {
     return (
       <StyledContainer>
         {[...Array(5)].map((_, i) => (
