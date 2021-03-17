@@ -1,3 +1,5 @@
+import { IComment, IProduct } from '../types';
+
 export const LOAD_DATA = 'LOAD_DATA';
 export const SET_DATA = 'SET_DATA';
 export const SUBMIT_FORM = 'SUBMIT_FORM';
@@ -52,36 +54,23 @@ export const handleSubmit = (
 
 export default productReducer;
 
-export type IComment = {
-  text: string;
-  rating: number;
-};
-
-export interface IProduct {
-  asin: string;
-  name: string;
-  img: string;
-  comments: IComment[];
-  [key: string]: any;
-}
-
-interface ISetDataAction {
+type ISetDataAction = {
   type: typeof SET_DATA;
   payload: {
-    data: Array<IProduct>;
+    data: IProduct[];
   };
-}
+};
 
-interface IHandleSubmitAction {
+type IHandleSubmitAction = {
   type: typeof SUBMIT_FORM;
   payload: {
     data: IComment;
     id: string;
   };
-}
+};
 
 type ProductsActionTypes = ISetDataAction | IHandleSubmitAction;
 
-export interface ILoadDataAction {
+export type ILoadDataAction = {
   type: typeof LOAD_DATA;
-}
+};
