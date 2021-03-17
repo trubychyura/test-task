@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { loadData } from './redux/products';
+import { StyledContainer, StyledTable } from './styled/StyledApp';
+import { HashRouter as Router, Route } from 'react-router-dom';
 
-function App() {
+import Modal from './components/Modal';
+import Product from './components/Product';
+
+function App({ loadData, products }) {
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledContainer>
+      <Router>
+        <Route path='/'>
+          <StyledTable bordered striped hover>
+            <thead>
+              <tr>
+                <th>List of products</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map(({ name, asin }) => (
+                <Product id={asin} name={name} key={asin} />
+              ))}
+            </tbody>
+          </StyledTable>
+        </Route>
+        <Route path='/:id'>
+          <Modal />
+        </Route>
+      </Router>
+    </StyledContainer>
   );
 }
 
-export default App;
+const mapStateToProps = ({ products }) => ({ products });
+
+export default connect(mapStateToProps, {
+  loadData,
+})(App);
