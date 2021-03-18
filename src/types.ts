@@ -11,6 +11,11 @@ export type IProduct = {
   [key: string]: any;
 };
 
+export type HomeProps = {
+  products: IProduct[];
+  loadData: () => void;
+};
+
 export type RatingProps = {
   name?: string;
   stars?: number;
@@ -35,6 +40,7 @@ export type FormikValues = {
 export type ProductProps = {
   id: string;
   name: string;
+  img: string;
 };
 
 export type IState = {

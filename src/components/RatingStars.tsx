@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import { Field, FieldProps } from 'formik';
 import { Form } from 'react-bootstrap';
+
 import { RatingProps } from '../types';
 import {
   StyledContainer,

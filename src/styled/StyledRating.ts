@@ -7,11 +7,13 @@ export const StyledStar = styled(Star)<StarProps>`
   transition: color 200ms;
   width: 25px;
   heidth: 25px;
-  ${({ value, rating, hover }) =>
-    value <= (hover || rating) ? `color: gold;` : `color: silver;`}
+  ${({ value, rating, hover, theme }) =>
+    value <= (hover || rating)
+      ? `color: ${theme.color.gold};`
+      : `color: ${theme.color.silver};`}
   ${({ hover }) => hover !== undefined && `cursor: pointer;`}
 
-  @media (max-width: 580px) {
+  @media (max-width: ${({ theme }) => theme.media.md}) {
     width: 18px;
     heidht: 18px;
   }

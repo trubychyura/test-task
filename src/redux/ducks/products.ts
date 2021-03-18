@@ -1,4 +1,6 @@
-import { IComment, IProduct } from '../types';
+import { takeEvery, call, put } from 'redux-saga/effects';
+
+import { IComment, IProduct } from '../../types';
 
 export const LOAD_DATA = 'LOAD_DATA';
 export const SET_DATA = 'SET_DATA';
@@ -30,7 +32,9 @@ const productReducer = (
   }
 };
 
-export const setData = (data: Array<IProduct>): ISetDataAction => ({
+export default productReducer;
+
+const setData = (data: Array<IProduct>): ISetDataAction => ({
   type: SET_DATA,
   payload: {
     data,
@@ -52,7 +56,21 @@ export const handleSubmit = (
   },
 });
 
-export default productReducer;
+const fetchData = async (): Promise<IProduct[]> => {
+  const response = await fetch('https://demo8413434.mockable.io/');
+  const data = await response.json();
+  return data.products;
+};
+
+function* workerLoadData() {
+  const data: IProduct[] = yield call(fetchData);
+
+  yield put(setData(data));
+}
+
+export function* watchLoadData() {
+  yield takeEvery(LOAD_DATA, workerLoadData);
+}
 
 type ISetDataAction = {
   type: typeof SET_DATA;
@@ -69,8 +87,8 @@ type IHandleSubmitAction = {
   };
 };
 
-type ProductsActionTypes = ISetDataAction | IHandleSubmitAction;
-
 export type ILoadDataAction = {
   type: typeof LOAD_DATA;
 };
+
+type ProductsActionTypes = ISetDataAction | IHandleSubmitAction;

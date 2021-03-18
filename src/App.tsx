@@ -1,48 +1,22 @@
-import { useEffect, FC } from 'react';
-import { connect } from 'react-redux';
-import { loadData } from './redux/products';
-import { StyledContainer, StyledTable } from './styled/StyledApp';
+import { FC } from 'react';
 import { HashRouter as Router, Route } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 
-import Modal from './components/Modal';
-import Product from './components/Product';
-import { IProduct, IState } from './types';
+import { Modal, Home } from './components';
 
-type AppProps = {
-  products: IProduct[];
-  loadData: () => void;
-};
+import { theme } from './styled';
 
-const App: FC<AppProps> = ({ loadData, products }) => {
-  useEffect(() => {
-    loadData();
-  }, [loadData]);
+const App: FC = () => (
+  <ThemeProvider theme={theme}>
+    <Router>
+      <Route path='/'>
+        <Home />
+      </Route>
+      <Route path='/:id'>
+        <Modal />
+      </Route>
+    </Router>
+  </ThemeProvider>
+);
 
-  return (
-    <StyledContainer>
-      <Router>
-        <Route path='/'>
-          <StyledTable bordered striped hover>
-            <thead>
-              <tr>
-                <th>List of products</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map(({ name, asin }) => (
-                <Product id={asin} name={name} key={asin} />
-              ))}
-            </tbody>
-          </StyledTable>
-        </Route>
-        <Route path='/:id'>
-          <Modal />
-        </Route>
-      </Router>
-    </StyledContainer>
-  );
-};
-
-export default connect(({ products }: IState) => ({ products }), {
-  loadData,
-})(App);
+export default App;

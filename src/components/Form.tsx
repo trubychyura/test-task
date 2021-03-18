@@ -2,10 +2,12 @@ import { FC } from 'react';
 import { connect } from 'react-redux';
 import { Formik, FormikProps } from 'formik';
 import * as yup from 'yup';
-import { handleSubmit } from '../redux/products';
+
+import { RatingStars } from '.';
+
+import { handleSubmit } from '../redux/ducks/products';
 import { FormProps, FormikValues } from '../types';
 import { StyledForm, StyledButton, StyledAlert } from '../styled/StyledForm';
-import { RatingStars } from '.';
 
 const initialValues: FormikValues = {
   comment: '',
