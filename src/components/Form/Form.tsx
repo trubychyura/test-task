@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { Formik, FormikProps } from 'formik';
 import * as yup from 'yup';
 
-import { RatingStars } from '.';
+import { RatingStars } from '..';
 
-import { handleSubmit } from '../redux/ducks/products';
-import { FormProps, FormikValues } from '../types';
-import { StyledForm, StyledButton, StyledAlert } from '../styled/StyledForm';
+import { handleSubmit } from '../../redux/ducks/products';
+import { FormProps, FormikValues } from '../../types';
+import { StyledForm, StyledButton, StyledAlert } from '../../styled/StyledForm';
 
 const initialValues: FormikValues = {
   comment: '',

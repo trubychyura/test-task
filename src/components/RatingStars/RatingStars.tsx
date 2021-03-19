@@ -2,12 +2,12 @@ import { FC, useState } from 'react';
 import { Field, FieldProps } from 'formik';
 import { Form } from 'react-bootstrap';
 
-import { RatingProps } from '../types';
+import { RatingProps } from '../../types';
 import {
   StyledContainer,
   StyledRadio,
   StyledStar,
-} from '../styled/StyledRating';
+} from '../../styled/StyledRating';
 
 const RatingStars: FC<RatingProps> = ({ name, stars }) => {
   const [hover, setHover] = useState<number | null>(null);

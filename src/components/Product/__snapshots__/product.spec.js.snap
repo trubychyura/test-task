@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Product component should render Product component 1`] = `
+<Styled(Row)
+  className="product"
+>
+  <Styled(Col)>
+    <Link
+      to="/id"
+    />
+  </Styled(Col)>
+  <Styled(Col)>
+    <Styled(Image) />
+  </Styled(Col)>
+</Styled(Row)>
+`;
