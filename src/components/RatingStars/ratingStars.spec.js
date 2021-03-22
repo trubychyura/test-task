@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 
-import RatingStars from './RatingStars';
+import RatingStars from '..';
 import { Field } from 'formik';
 
 const setUp = (props) => shallow(<RatingStars {...props} />);
