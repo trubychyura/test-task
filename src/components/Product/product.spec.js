@@ -1,19 +1,21 @@
 import { shallow } from 'enzyme';
+import { Link } from 'react-router-dom';
 
 import Product from './Product';
-import { StyledRow } from '../../styled/StyledProduct';
 
 const setUp = (props) => shallow(<Product {...props} />);
 
 describe('Product component', () => {
   let component;
   beforeEach(() => {
-    component = setUp({ id: 'id' });
+    component = setUp({ id: 'mock id' });
   });
 
-  it('should contain StyledRow', () => {
-    const wrapper = component.find(StyledRow);
-    expect(wrapper.length).toBe(1);
+  it('Link should contain prover text', () => {
+    const name = 'mock text';
+    const component = setUp({ name });
+    const wrapper = component.find(Link);
+    expect(wrapper.text()).toEqual(name);
   });
 
   it('should render Product component', () => {

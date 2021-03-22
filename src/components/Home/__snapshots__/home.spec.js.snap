@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home component should render component 1`] = `
+<Styled(Container)>
+  <styled.h1>
+    List of products
+  </styled.h1>
+  <Product
+    id="B0721KZHWT"
+    img="https://images-na.ssl-images-amazon.com/images/I/71Y4Ogr8BNL._SX679_.jpg"
+    key="B0721KZHWT"
+    name="A3 Magnetic Dry Wipe Weekly Planner Whiteboard for Fridge - Handy Week Calendar/Organiser by Plan Smart - Bonus: 3 Quality Dry Erase Markers with Eraser Included"
+  />
+  <Product
+    id="B01HI4E470"
+    img="https://images-na.ssl-images-amazon.com/images/I/81GKt-J0kxL._SX425_.jpg"
+    key="B01HI4E470"
+    name="RoLightic 5M Waterproof Led Strip Light, Multi-Color,SMD 5050 150LEDs Color Changing Flexible Led Strip Kit with 44 key Remote Controller + Power Adapter for Home Kitchen Cabinet Car TV Lighting Decoration"
+  />
+  <Product
+    id="B078PG3PLC"
+    img="https://images-na.ssl-images-amazon.com/images/I/81iRKp0s5JL._SX522_.jpg"
+    key="B078PG3PLC"
+    name="IPX7 Waterproof Bike Light Set-1000 Lumen Mini Bicycle Headlight Free Rear Light-USB Fast Charge High Performance Rechargeable Battery Easy Install & Universal Fit Mount"
+  />
+</Styled(Container)>
+`;

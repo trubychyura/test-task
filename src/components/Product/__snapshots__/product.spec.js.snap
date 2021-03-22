@@ -6,7 +6,7 @@ exports[`Product component should render Product component 1`] = `
 >
   <Styled(Col)>
     <Link
-      to="/id"
+      to="/mock id"
     />
   </Styled(Col)>
   <Styled(Col)>

@@ -1,4 +1,4 @@
-export const theme = {
+const theme = {
   color: {
     gold: 'gold',
     silver: 'silver',
@@ -8,3 +8,5 @@ export const theme = {
     lg: '1000px',
   },
 };
+
+export default theme;

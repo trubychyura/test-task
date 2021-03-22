@@ -1,14 +1,14 @@
-import { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 
-import { Product } from '.';
+import { Product } from '..';
 
-import { loadData } from '../redux/ducks/products';
-import { IState, HomeProps } from '../types';
-import { StyledContainer, StyledTitle } from '../styled/StyledHome';
+import { loadData } from '../../redux/ducks/products';
+import { IState, HomeProps } from '../../types';
+import { StyledContainer, StyledTitle } from '../../styled/StyledHome';
 
-const Home: FC<HomeProps> = ({ products, loadData }) => {
-  useEffect(() => {
+export const Home: FC<HomeProps> = ({ products, loadData }) => {
+  React.useEffect(() => {
     loadData();
   }, [loadData]);
 

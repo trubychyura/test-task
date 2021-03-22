@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form component should render component 1`] = `
+<Styled(Modal)
+  onHide={[Function]}
+  show={true}
+>
+  <ModalHeader
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <ModalTitle>
+      A3 Magnetic Dry Wipe Weekly Planner Whiteboard for Fridge - Handy Week Calendar/Organiser by Plan Smart - Bonus: 3 Quality Dry Erase Markers with Eraser Included
+    </ModalTitle>
+  </ModalHeader>
+  <ModalBody
+    as={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "noGutters": false,
+        },
+        "render": [Function],
+      }
+    }
+  >
+    <Col
+      lg="auto"
+    >
+      <Styled(Image)
+        src="https://images-na.ssl-images-amazon.com/images/I/71Y4Ogr8BNL._SX679_.jpg"
+      />
+    </Col>
+    <Styled(Col)>
+      <h5>
+        Description:
+      </h5>
+      <p>
+        <span>
+          A3 Magnetic Dry Wipe Weekly Planner Whiteboard for Fridge - Handy Week Calendar/Organiser by Plan Smart - Bonus: 3 Quality Dry Erase Markers with Eraser Included
+        </span>
+      </p>
+    </Styled(Col)>
+    <Styled(Col)
+      lg={12}
+    >
+      <h5>
+        Comments:
+      </h5>
+      <ListGroup>
+        <ListGroupItem
+          active={false}
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": Object {
+                "fluid": false,
+              },
+              "render": [Function],
+            }
+          }
+          disabled={false}
+          key="0"
+        >
+          <Styled(Row)>
+            <h6>
+              Unknown user
+            </h6>
+            <RatingStars
+              stars={4}
+            />
+          </Styled(Row)>
+          <p>
+            Some comment
+          </p>
+        </ListGroupItem>
+      </ListGroup>
+    </Styled(Col)>
+  </ModalBody>
+  <ModalFooter>
+    <Connect(Form)
+      id="B0721KZHWT"
+    />
+  </ModalFooter>
+</Styled(Modal)>
+`;

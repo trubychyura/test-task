@@ -1,20 +1,31 @@
-import { shallow, mount, render } from 'enzyme';
-// import { Provider } from 'react-redux';
-import { ThemeProvider } from 'styled-components';
-import store from '../../redux/store';
-import { theme } from '../../styled';
+import { shallow } from 'enzyme';
+
 import RatingStars from './RatingStars';
+import { Field } from 'formik';
 
 const setUp = (props) => shallow(<RatingStars {...props} />);
 
 describe('RatingStars component', () => {
-  it('should render component with rating', () => {
-    const component = setUp();
+  let component;
+  beforeEach(() => {
+    component = setUp();
+  });
+
+  it('should contain a Field', () => {
+    expect(component.find(Field)).toHaveLength(1);
+  });
+
+  it('should contain 5 children', () => {
+    const component = setUp({ stars: 5 });
+    expect(component.children()).toHaveLength(5);
+  });
+
+  it('should render component with 5 children', () => {
+    const component = setUp({ stars: 5 });
     expect(component).toMatchSnapshot();
   });
 
-  it('should render component without rating and with name', () => {
-    const component = setUp({ stars: 5 });
+  it('should render component with Field', () => {
     expect(component).toMatchSnapshot();
   });
 });

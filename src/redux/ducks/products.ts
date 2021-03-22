@@ -34,7 +34,7 @@ const productReducer = (
 
 export default productReducer;
 
-const setData = (data: Array<IProduct>): ISetDataAction => ({
+export const setData = (data: Array<IProduct>): ISetDataAction => ({
   type: SET_DATA,
   payload: {
     data,
@@ -56,19 +56,19 @@ export const handleSubmit = (
   },
 });
 
-const fetchData = async (): Promise<IProduct[]> => {
+export const fetchData = async (): Promise<IProduct[]> => {
   const response = await fetch('https://demo8413434.mockable.io/');
   const data = await response.json();
   return data.products;
 };
 
-function* workerLoadData() {
+export function* workerLoadData() {
   const data: IProduct[] = yield call(fetchData);
 
   yield put(setData(data));
 }
 
-export function* watchLoadData() {
+export function* watcherLoadData() {
   yield takeEvery(LOAD_DATA, workerLoadData);
 }
 

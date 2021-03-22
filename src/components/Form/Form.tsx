@@ -14,7 +14,7 @@ const initialValues: FormikValues = {
   rating: 0,
 };
 
-const Form: FC<FormProps> = ({ id, handleSubmit }) => (
+export const Form: FC<FormProps> = ({ id, handleSubmit }) => (
   <Formik
     initialValues={initialValues}
     onSubmit={(values, { resetForm }) => {
@@ -41,8 +41,8 @@ const Form: FC<FormProps> = ({ id, handleSubmit }) => (
         <StyledForm.Group controlId='formComment'>
           <StyledForm.Label>Your comment:</StyledForm.Label>
           <StyledForm.Control
-            as='textarea'
             value={formik.values.comment}
+            as='textarea'
             placeholder='Enter comment'
             name='comment'
             onChange={formik.handleChange}

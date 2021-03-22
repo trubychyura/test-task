@@ -1,14 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RatingStars component should render component with rating 1`] = `
-<styled.div>
-  <Field>
-    <Component />
-  </Field>
-</styled.div>
-`;
-
-exports[`RatingStars component should render component without rating and with name 1`] = `
+exports[`RatingStars component should render component with 5 children 1`] = `
 <styled.div>
   <Styled(Star)
     key="0"
@@ -35,5 +27,13 @@ exports[`RatingStars component should render component without rating and with n
     rating={5}
     value={5}
   />
+</styled.div>
+`;
+
+exports[`RatingStars component should render component with Field 1`] = `
+<styled.div>
+  <Field>
+    <Component />
+  </Field>
 </styled.div>
 `;
