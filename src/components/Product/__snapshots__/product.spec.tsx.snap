@@ -1,17 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Product component should render Product component 1`] = `
-<Styled(Row)
-  className="product"
->
-  <Styled(Col)>
+<Styled(Row)>
+  <Styled(Col)
+    md={
+      Object {
+        "order": "first",
+      }
+    }
+    xs={
+      Object {
+        "order": "last",
+        "span": 12,
+      }
+    }
+  >
     <Link
       to="/mock id"
     >
       mock name
     </Link>
   </Styled(Col)>
-  <Styled(Col)>
+  <Styled(Col)
+    md={
+      Object {
+        "order": "last",
+      }
+    }
+    xs={
+      Object {
+        "order": "first",
+        "span": 12,
+      }
+    }
+  >
     <Styled(Image)
       src="mock img"
     />
