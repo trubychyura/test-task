@@ -54,3 +54,12 @@ export type ModalProps = {
 export type ParamTypes = {
   id: string;
 };
+
+export type ITheme = {
+  color: {
+    [key: string]: string;
+  };
+  media: {
+    [key: string]: string;
+  };
+};

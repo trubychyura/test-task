@@ -1,4 +1,10 @@
-import { waitFor, cleanup, fireEvent, render } from '@testing-library/react';
+import {
+  waitFor,
+  cleanup,
+  fireEvent,
+  render,
+  RenderResult,
+} from '@testing-library/react';
 
 import { Form } from './Form';
 
@@ -6,13 +12,14 @@ import { ThemeProvider } from 'styled-components';
 import theme from '../../styled/theme';
 
 describe('Form component', () => {
-  let wrapper;
-  let handleSubmit;
+  let wrapper: RenderResult;
+  let handleSubmit: () => void;
 
   beforeEach(async () => {
     handleSubmit = jest.fn();
     const props = {
       handleSubmit,
+      id: 'mock id',
     };
 
     wrapper = render(

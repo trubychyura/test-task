@@ -46,7 +46,7 @@ const mockData = [
 describe('Products', () => {
   describe('Products Reducer', () => {
     it('should return default state', () => {
-      const newState = productsReducer(undefined, {});
+      const newState = productsReducer(undefined, {} as any);
       expect(newState).toEqual([]);
     });
 
@@ -109,7 +109,7 @@ describe('Products', () => {
         },
       };
 
-      expect(handleSubmit('id', {})).toEqual(expectedAction);
+      expect(handleSubmit('id', {} as any)).toEqual(expectedAction);
     });
 
     it('should create an action to load data', () => {

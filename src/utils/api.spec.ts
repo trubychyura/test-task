@@ -2,9 +2,7 @@ import fetchMock from 'jest-fetch-mock';
 
 import { fetchData } from './api';
 
-
-
-const mockData  = { products: [1, 2, 34] };
+const mockData = { products: [1, 2, 34] };
 
 describe('fetchData function', () => {
   beforeEach(() => {
@@ -12,7 +10,7 @@ describe('fetchData function', () => {
   });
 
   it('fetchData returns fetched data', async () => {
-    fetch.mockResponseOnce(JSON.stringify(mockData));
+    fetchMock.mockResponseOnce(JSON.stringify(mockData));
 
     const products = await fetchData();
 

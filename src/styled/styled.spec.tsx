@@ -1,13 +1,19 @@
-import { shallow } from 'enzyme';
+import { shallow, ShallowWrapper } from 'enzyme';
 import 'jest-styled-components';
 
 import theme from './theme';
 import { StyledModal } from './StyledModal';
 import { StyledStar } from './StyledRating';
 
+type setUpProps = {
+  value?: number;
+  rating?: number;
+  hover?: number;
+};
 describe('Styled components', () => {
   let component;
-  const setUp = (Comp, props) => shallow(<Comp theme={theme} {...props} />);
+  const setUp = (Comp: any, props?: setUpProps): ShallowWrapper =>
+    shallow(<Comp {...props} theme={theme} />);
 
   describe('Styled Modal', () => {
     it('should render Styled Modal', () => {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Star } from '@styled-icons/boxicons-solid/Star';
 import { Form } from 'react-bootstrap';
+import { Star } from '@styled-icons/boxicons-solid/Star';
 import { StarProps } from '../types';
 
 export const StyledStar = styled(Star)<StarProps>`

@@ -1,14 +1,16 @@
-import { shallow } from 'enzyme';
+import { shallow, ShallowWrapper } from 'enzyme';
 
 import { RatingStars } from '..';
 import { Field } from 'formik';
+import { RatingProps } from '../../types';
 
-const setUp = (props) => shallow(<RatingStars {...props} />);
+const setUp = (props: RatingProps): ShallowWrapper =>
+  shallow(<RatingStars {...props} />);
 
 describe('RatingStars component', () => {
-  let component;
+  let component: ShallowWrapper;
   beforeEach(() => {
-    component = setUp();
+    component = setUp({});
   });
 
   it('should contain a Field', () => {

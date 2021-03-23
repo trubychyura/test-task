@@ -1,9 +1,12 @@
-import { shallow } from 'enzyme';
-import routeData from 'react-router';
+import React from 'react';
+import { shallow, ShallowWrapper } from 'enzyme';
 
-import { Modal } from './Modal';
+import { Home } from './Home';
+import { Product } from '..';
+import { HomeProps } from '../../types';
 
-import theme from '../../styled/theme';
+const setUp = (props: HomeProps): ShallowWrapper =>
+  shallow(<Home {...props} />);
 
 const products = [
   {
@@ -37,22 +40,37 @@ const products = [
   },
 ];
 
-const setUp = (props) => shallow(<Modal {...props} theme={theme} />);
-
-describe('Form component', () => {
-  let component;
+describe('Home component', () => {
+  let component: ShallowWrapper;
   beforeEach(() => {
-    jest.spyOn(routeData, 'useParams').mockReturnValue({
-      id: 'B0721KZHWT',
-    });
-    component = setUp({ products });
+    const props = {
+      products,
+      loadData: () => {},
+    };
+    component = setUp(props);
   });
 
   it('should render component', () => {
     expect(component).toMatchSnapshot();
   });
 
-  it('should be null', () => {
-    expect(setUp({ products: [] }).html()).toBeNull();
+  it('should render defined amount of products', () => {
+    const wrapper = component.find(Product);
+    expect(wrapper).toHaveLength(products.length);
+  });
+
+  describe('useEffect hook', () => {
+    let loadData: () => void;
+
+    beforeEach(() => {
+      jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
+
+      loadData = jest.fn().mockReturnValue(products);
+      component = setUp({ products: [], loadData });
+    });
+
+    it('loads the products', () => {
+      expect(loadData).toHaveBeenCalled();
+    });
   });
 });

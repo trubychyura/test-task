@@ -7,10 +7,14 @@ exports[`Product component should render Product component 1`] = `
   <Styled(Col)>
     <Link
       to="/mock id"
-    />
+    >
+      mock name
+    </Link>
   </Styled(Col)>
   <Styled(Col)>
-    <Styled(Image) />
+    <Styled(Image)
+      src="mock img"
+    />
   </Styled(Col)>
 </Styled(Row)>
 `;
