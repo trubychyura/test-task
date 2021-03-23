@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Col, Image, Modal, Row } from 'react-bootstrap';
 
 export const StyledModal = styled(Modal)`
-  @media (max-width: 560px) {
+  @media (max-width: ${({ theme }) => theme.media.md}) {
     padding: 0 !important;
   }
 
@@ -14,10 +14,10 @@ export const StyledModal = styled(Modal)`
 
   .modal-dialog {
     max-width: 60%;
-    @media (max-width: 1000px) {
+    @media (max-width: ${({ theme }) => theme.media.lg}) {
       max-width: 70%;
     }
-    @media (max-width: 580px) {
+    @media (max-width: ${({ theme }) => theme.media.md}) {
       max-width: 90%;
       margin: auto;
     }
@@ -30,7 +30,6 @@ export const StyledImage = styled(Image)`
   max-width: 100%;
   margin: auto;
 `;
-
 
 export const StyledDescription = styled(Col)`
   display: flex;

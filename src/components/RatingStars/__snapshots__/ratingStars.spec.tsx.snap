@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RatingStars component should render component with 5 children 1`] = `
+<styled.div>
+  <Styled(Star)
+    key="0"
+    rating={5}
+    value={1}
+  />
+  <Styled(Star)
+    key="1"
+    rating={5}
+    value={2}
+  />
+  <Styled(Star)
+    key="2"
+    rating={5}
+    value={3}
+  />
+  <Styled(Star)
+    key="3"
+    rating={5}
+    value={4}
+  />
+  <Styled(Star)
+    key="4"
+    rating={5}
+    value={5}
+  />
+</styled.div>
+`;
+
+exports[`RatingStars component should render component with Field 1`] = `
+<styled.div>
+  <Field>
+    <Component />
+  </Field>
+</styled.div>
+`;

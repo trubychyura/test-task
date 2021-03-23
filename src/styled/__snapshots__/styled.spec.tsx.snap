@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Styled components Styled Modal should render Styled Modal 1`] = `
+.c0 .modal-title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.c0 .modal-dialog {
+  max-width: 60%;
+}
+
+@media (max-width:580px) {
+  .c0 {
+    padding: 0 !important;
+  }
+}
+
+@media (max-width:1000px) {
+  .c0 .modal-dialog {
+    max-width: 70%;
+  }
+}
+
+@media (max-width:580px) {
+  .c0 .modal-dialog {
+    max-width: 90%;
+    margin: auto;
+  }
+}
+
+<Modal
+  animation={true}
+  autoFocus={true}
+  backdrop={true}
+  className="c0"
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
+    }
+  }
+  enforceFocus={true}
+  keyboard={true}
+  restoreFocus={true}
+  show={false}
+  theme={
+    Object {
+      "color": Object {
+        "gold": "gold",
+        "silver": "silver",
+      },
+      "media": Object {
+        "lg": "1000px",
+        "md": "580px",
+      },
+    }
+  }
+/>
+`;
+
+exports[`Styled components Styled Star should render Styled Star 1`] = `
+.c0 {
+  -webkit-transition: color 200ms;
+  transition: color 200ms;
+  width: 25px;
+  heidth: 25px;
+  color: silver;
+}
+
+@media (max-width:580px) {
+  .c0 {
+    width: 18px;
+    heidht: 18px;
+  }
+}
+
+<Star
+  className="c0"
+  theme={
+    Object {
+      "color": Object {
+        "gold": "gold",
+        "silver": "silver",
+      },
+      "media": Object {
+        "lg": "1000px",
+        "md": "580px",
+      },
+    }
+  }
+/>
+`;

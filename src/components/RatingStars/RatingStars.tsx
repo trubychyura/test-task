@@ -1,26 +1,22 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
+import { Field, FieldProps } from 'formik';
 import { Form } from 'react-bootstrap';
-import { Field } from 'formik';
 
+import { RatingProps } from '../../types';
 import {
   StyledContainer,
   StyledRadio,
   StyledStar,
-} from '../styled/StyledRating';
+} from '../../styled/StyledRating';
 
-const RatingStars = ({ stars, name }) => {
-  const [hover, setHover] = useState(null);
+const RatingStars: FC<RatingProps> = ({ name, stars }) => {
+  const [hover, setHover] = useState<number | null>(null);
 
-  if (stars !== undefined) {
+  if (stars) {
     return (
       <StyledContainer>
         {[...Array(5)].map((_, i) => (
-          <StyledStar
-            value={i + 1}
-            rating={Math.round(stars)}
-            hover={null}
-            key={i}
-          />
+          <StyledStar value={i + 1} rating={Math.round(stars || 0)} key={i} />
         ))}
       </StyledContainer>
     );
@@ -29,9 +25,10 @@ const RatingStars = ({ stars, name }) => {
   return (
     <StyledContainer>
       <Field name={name}>
-        {({ field }) =>
+        {({ field }: FieldProps) =>
           [...Array(5)].map((_, i) => {
-            let rating = i + 1;
+            let rating: number = i + 1;
+
             return (
               <Form.Label htmlFor={`formRadio${i}`} key={i}>
                 <StyledStar
@@ -47,6 +44,7 @@ const RatingStars = ({ stars, name }) => {
                   {...field}
                   value={rating}
                   checked={rating === field.value}
+                  data-testid={`radio${i}`}
                 />
               </Form.Label>
             );
