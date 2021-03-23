@@ -16,6 +16,7 @@ const initialValues: FormikValues = {
 
 export const Form: FC<FormProps> = ({ id, handleSubmit }) => (
   <Formik
+    validateOnBlur={true}
     initialValues={initialValues}
     onSubmit={(values, { resetForm }) => {
       handleSubmit(id, { text: values.comment, rating: values.rating });
@@ -30,7 +31,7 @@ export const Form: FC<FormProps> = ({ id, handleSubmit }) => (
     })}
   >
     {(formik: FormikProps<FormikValues>) => (
-      <StyledForm onSubmit={formik.handleSubmit}>
+      <StyledForm onSubmit={formik.handleSubmit} data-testid='form'>
         <StyledForm.Group>
           <StyledForm.Label>Products's rate:</StyledForm.Label>
           <RatingStars name='rating' />
@@ -48,7 +49,9 @@ export const Form: FC<FormProps> = ({ id, handleSubmit }) => (
             onChange={formik.handleChange}
           />
           {formik.errors.comment && formik.touched.comment && (
-            <StyledAlert variant='danger'>{formik.errors.comment}</StyledAlert>
+            <StyledAlert variant='danger' data-testid='error'>
+              {formik.errors.comment}
+            </StyledAlert>
           )}
         </StyledForm.Group>
         <StyledButton variant='primary' type='submit'>

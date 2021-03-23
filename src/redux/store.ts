@@ -1,6 +1,6 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { watchLoadData } from './ducks/products';
+import { watcherLoadData } from './ducks/products';
 import reducer from './reducer';
 
 const composeEnhancers =
@@ -15,4 +15,4 @@ export default createStore(
   composeEnhancers(applyMiddleware(sagaMiddleware)),
 );
 
-sagaMiddleware.run(watchLoadData);
+sagaMiddleware.run(watcherLoadData);

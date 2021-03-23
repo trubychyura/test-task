@@ -1,12 +1,12 @@
 import { takeEvery } from 'redux-saga/effects';
 
-import productsReducer, { loadData } from './products';
-import {
+import productsReducer, {
   LOAD_DATA,
   SET_DATA,
   setData,
   SUBMIT_FORM,
   handleSubmit,
+  loadData,
   workerLoadData,
   watcherLoadData,
 } from './products';
@@ -74,6 +74,7 @@ describe('Products', () => {
       expect(newState[0].comments).toContain(mockComment);
     });
   });
+
   describe('Products Saga', () => {
     const genObj = watcherLoadData();
 

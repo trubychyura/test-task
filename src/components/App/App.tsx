@@ -2,9 +2,9 @@ import { FC } from 'react';
 import { HashRouter as Router, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import { Modal, Home } from './components';
+import { Modal, Home } from '..';
 
-import { theme } from './styled';
+import theme from '../../styled/theme';
 
 const App: FC = () => (
   <ThemeProvider theme={theme}>

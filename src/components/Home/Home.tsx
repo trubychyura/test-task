@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { Product } from '..';
@@ -8,7 +8,7 @@ import { IState, HomeProps } from '../../types';
 import { StyledContainer, StyledTitle } from '../../styled/StyledHome';
 
 export const Home: FC<HomeProps> = ({ products, loadData }) => {
-  React.useEffect(() => {
+  useEffect(() => {
     loadData();
   }, [loadData]);
 

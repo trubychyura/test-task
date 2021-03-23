@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import { Link } from 'react-router-dom';
 
-import Product from '..';
+import { Product } from '..';
 
 const setUp = (props) => shallow(<Product {...props} />);
 

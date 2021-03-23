@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import 'jest-styled-components';
 
-import theme from '.';
+import theme from './theme';
 import { StyledModal } from './StyledModal';
 import { StyledStar } from './StyledRating';
 

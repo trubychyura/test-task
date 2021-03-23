@@ -1,40 +1,51 @@
-import { shallow } from 'enzyme';
+import { waitFor, cleanup, fireEvent, render } from '@testing-library/react';
 
 import { Form } from './Form';
-import { Form as BootstrapForm } from 'react-bootstrap';
-import { StyledForm } from '../../styled/StyledForm';
 
-import { theme } from '../../styled';
-
-const setUp = (props) => shallow(<Form {...props} />);
+import { ThemeProvider } from 'styled-components';
+import theme from '../../styled/theme';
 
 describe('Form component', () => {
-  let component;
-  beforeEach(() => {
-    component = setUp();
+  let wrapper;
+  let handleSubmit;
+
+  beforeEach(async () => {
+    handleSubmit = jest.fn();
+    const props = {
+      handleSubmit,
+    };
+
+    wrapper = render(
+      <ThemeProvider theme={theme}>
+        <Form {...props} />
+      </ThemeProvider>,
+    );
   });
 
-  it('should render component', () => {
-    expect(component.dive()).toMatchSnapshot();
-  });
+  afterEach(cleanup);
 
-  it('should update Form.Control when it is changed', () => {
-    // console.log(component.dive().find(StyledForm.Control).debug());
-    // console.log(input.debug());
-    // input.prop('onChange', {
-    //   target: { name: 'comment', value: 'new comment' },
-    // });
-    const input = component.dive().find(StyledForm.Control);
-    input.simulate('change', {
-      persist: () => {},
-      target: {
-        name: 'comment',
-        value: 'new comment',
-      },
+  it('Should trigger errors when form contains invalid values', async () => {
+    const form = wrapper.getByTestId('form');
+
+    fireEvent.submit(form);
+
+    await waitFor(() => {
+      expect(wrapper.getByText("Product's rate is required!")).not.toBe(null);
+      expect(wrapper.getByText('Comment is required!')).not.toBe(null);
     });
+  });
 
-    const newValue = input.props().value;
+  it('Should submit form when form fields contain valid values', async () => {
+    const input = wrapper.getByPlaceholderText('Enter comment');
+    const radio = wrapper.getByTestId('radio1');
+    const form = wrapper.getByTestId('form');
 
-    expect(newValue).toEqual('new comment');
+    fireEvent.change(input, { target: { value: 'mock value' } });
+    fireEvent.click(radio);
+    fireEvent.submit(form);
+
+    await waitFor(() => {
+      expect(handleSubmit).toHaveBeenCalled();
+    });
   });
 });

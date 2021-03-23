@@ -3,7 +3,7 @@ import routeData from 'react-router';
 
 import { Modal } from './Modal';
 
-import theme from '../../styled';
+import theme from '../../styled/theme';
 
 const products = [
   {

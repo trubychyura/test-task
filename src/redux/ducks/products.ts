@@ -1,5 +1,6 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 
+import { fetchData } from '../../utils/api';
 import { IComment, IProduct } from '../../types';
 
 export const LOAD_DATA = 'LOAD_DATA';
@@ -55,12 +56,6 @@ export const handleSubmit = (
     id,
   },
 });
-
-export const fetchData = async (): Promise<IProduct[]> => {
-  const response = await fetch('https://demo8413434.mockable.io/');
-  const data = await response.json();
-  return data.products;
-};
 
 export function* workerLoadData() {
   const data: IProduct[] = yield call(fetchData);

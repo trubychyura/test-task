@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render App component 1`] = `
+<Component
+  theme={
+    Object {
+      "color": Object {
+        "gold": "gold",
+        "silver": "silver",
+      },
+      "media": Object {
+        "lg": "1000px",
+        "md": "580px",
+      },
+    }
+  }
+>
+  <HashRouter>
+    <Route
+      path="/"
+    >
+      <Connect(Home) />
+    </Route>
+    <Route
+      path="/:id"
+    >
+      <Connect(Modal) />
+    </Route>
+  </HashRouter>
+</Component>
+`;

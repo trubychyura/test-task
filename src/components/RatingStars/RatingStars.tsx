@@ -44,6 +44,7 @@ const RatingStars: FC<RatingProps> = ({ name, stars }) => {
                   {...field}
                   value={rating}
                   checked={rating === field.value}
+                  data-testid={`radio${i}`}
                 />
               </Form.Label>
             );
